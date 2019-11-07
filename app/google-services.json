@@ -15,7 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "803033263829-0uokdk4euon1tr2dlrndjh6q8ab487b5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.idoctor",

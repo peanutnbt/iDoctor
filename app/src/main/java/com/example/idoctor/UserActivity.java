@@ -50,7 +50,9 @@ public class UserActivity extends AppCompatActivity
         } else {
             // get user data from mUID
             mUID = mFirebaseUser.getUid();
+
         }
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -61,6 +63,9 @@ public class UserActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        Intent intent = new Intent(UserActivity.this,ExampleDoctorDetailActivity.class);
+        startActivity(intent);
 
 
     }

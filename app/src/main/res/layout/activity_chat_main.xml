@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatMainActivity">
+    <RelativeLayout
+        android:id="@+id/activity_chat_main"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/emoji_button"
+            android:src="@mipmap/cool_emoji"
+            android:padding="4dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            />
+
+        <ImageView
+            android:id="@+id/submit_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:padding="4dp"
+            android:src="@android:drawable/ic_menu_send" />
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_alignParentTop="true"
+            android:tint="@android:color/white"
+            android:layout_alignParentLeft="true"
+            app:srcCompat="@android:drawable/ic_menu_report_image" />
+
+
+
+
+        <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
+            android:layout_alignParentBottom="true"
+            android:id="@+id/emoji_edit_text"
+            android:layout_toRightOf="@+id/emoji_button"
+            android:layout_toLeftOf="@+id/submit_button"
+            app:emojiconSize="28sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/signout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_alignParentTop="true"
+            android:tint="@android:color/white"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@android:drawable/ic_delete" />
+
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:divider="@android:color/transparent"
+            android:layout_marginBottom="16dp"
+            android:layout_above="@+id/emoji_edit_text"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll">
+
+
+        </ListView>
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,9 @@ android {
         }
     }
 }
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -41,11 +44,22 @@ dependencies {
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:17.0.0')
 
-    implementation 'com.google.firebase:firebase-database'
-    implementation 'com.google.firebase:firebase-storage'
-    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-database:10.2.0'
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
+    implementation 'com.google.firebase:firebase-auth:16.0.1'
+
+    //Cong
+    implementation 'com.firebaseui:firebase-ui-database:6.0.2'
+    implementation 'com.firebaseui:firebase-ui-auth:6.0.2'
+    implementation 'com.github.hani-momanii:SuperNova-Emoji:1.1'
+    implementation 'com.github.lguipeng:BubbleView:1.0.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-database:16.0.4'
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-storage:16.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

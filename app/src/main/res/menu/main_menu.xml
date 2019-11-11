@@ -2,13 +2,16 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/app_bar_search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Search"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/app_bar_search"-->
+<!--        android:icon="@drawable/ic_search_black_24dp"-->
+<!--        android:title="Search"-->
+<!--        app:actionViewClass="android.widget.SearchView"-->
+<!--        app:showAsAction="ifRoom" />-->
+    <item android:id="@+id/search_menu_item"
+        android:title="Find Doctor" />
     <item
         android:id="@+id/sign_out"
         android:title="Sign Out" />
+
 </menu>

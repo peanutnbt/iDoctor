@@ -90,7 +90,7 @@ public class SearchActivity extends AppCompatActivity {
             firebaseQuery = mUserDatabase.orderByChild("role").equalTo(1);
         }
         else{
-            firebaseQuery = mUserDatabase.orderByChild("name_role").equalTo(searchText + "_1");
+            firebaseQuery = mUserDatabase.orderByChild("roleName").equalTo(searchText + "_1");
         }
         System.out.println("here1");
 

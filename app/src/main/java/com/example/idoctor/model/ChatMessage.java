@@ -5,14 +5,16 @@ public class ChatMessage {
     private String messText, messUser;
     private long messTime;
     private String type;
+    private  String imageUrl;
 
     public ChatMessage() {
     }
 
-    public ChatMessage(String messText, String messUser,String type) {
+    public ChatMessage(String messText, String messUser,String type, String imageUrl) {
         this.messText = messText;
         this.messUser = messUser;
         this.type = type;
+        this.imageUrl = imageUrl;
         this.messTime = new Date().getTime();
     }
 
@@ -46,5 +48,13 @@ public class ChatMessage {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

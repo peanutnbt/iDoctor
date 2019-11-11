@@ -43,11 +43,23 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onChanged(User user) {
                 Glide.with(root.getContext()).load(user.getPhotoURL()).into(mProfile);
-                mUserName.setText(user.getName());
+                mUserName.setText(validName(user.getName()));
                 mEmail.setText(user.getEmail());
                 mDescription.setText(user.getDescription());
             }
         });
         return root;
+    }
+    private String validName(String name){
+        String[] temp = name.split("\\s+");
+        int size = temp.length;
+        String result ="";
+        for(int i =1;i<size;i++){
+            result+=" "+temp[i];
+            if(i==(size-1)){
+                result+=" "+temp[0];
+            }
+        }
+        return result;
     }
 }

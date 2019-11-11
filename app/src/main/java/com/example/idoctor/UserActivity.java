@@ -53,6 +53,8 @@ public class UserActivity extends AppCompatActivity
 //        String uid = mFirebaseUser.getUid();
 //        mDatabaseReference = mDatabaseReference.child(mFirebaseUser.getUid());
         ValueEventListener valueEventListener = new ValueEventListener() {
+
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue() == null) {
@@ -66,6 +68,7 @@ public class UserActivity extends AppCompatActivity
                     newUser.setEmail(mFirebaseUser.getEmail());
                     mDatabaseReference.setValue(newUser);
                 }
+
             }
 
             @Override
@@ -142,6 +145,11 @@ public class UserActivity extends AppCompatActivity
             startActivity(new Intent(this,LoginActivity.class));
             finish();
             return;
+
+        } else {
+            // get user data from mUID
+            mUID = FirebaseAuth.getInstance().getUid();
+
         }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

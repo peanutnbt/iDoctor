@@ -20,32 +20,31 @@ import com.google.firebase.database.ValueEventListener;
 public class NotificationsViewModel extends ViewModel {
 
     private MutableLiveData<User> mUserMutableLiveData;
-//    private DatabaseReference mDatabaseReference;
+    private DatabaseReference mDatabaseReference;
     private FirebaseUser mFirebaseUser;
 
     private static final String TAG = "ProfileFragment";
 
-    public NotificationsViewModel() {}
+    public NotificationsViewModel() {
+        mUserMutableLiveData = new MutableLiveData<>();
+        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("User").child(mFirebaseUser.getUid());
+        Log.i("TAG HERE",mFirebaseUser.getUid());
+        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User u = dataSnapshot.getValue(User.class);
+                mUserMutableLiveData.setValue(u);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
 
     public LiveData<User> getUser() {
-        if(mUserMutableLiveData == null) {
-            mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//            mDatabaseReference = FirebaseDatabase.getInstance().getReference("User").child(mFirebaseUser.getUid());
-            Query query = FirebaseDatabase.getInstance().getReference("User").child(mFirebaseUser.getUid());
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        User u = dataSnapshot.getValue(User.class);
-                        mUserMutableLiveData = new MutableLiveData<>();
-                        mUserMutableLiveData.setValue(u);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
-        }
         return mUserMutableLiveData;
     }
+
 
 }

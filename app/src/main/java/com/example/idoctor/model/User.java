@@ -5,7 +5,6 @@ public class User {
     private String uid;
     private String email;
     private String name;
-    private String gender;
     private String photoURL;
     private int role;
 

@@ -48,27 +48,20 @@ public class UserActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("User");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("User").child(mFirebaseUser.getUid());
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.v(TAG,String.valueOf(dataSnapshot.getChildrenCount()));
-                boolean isExist = false;
-                for(DataSnapshot d:dataSnapshot.getChildren()) {
-                    User u = d.getValue(User.class);
-                    if(u.getUid().equals(mFirebaseUser.getUid())) {
-                        isExist = true;
-                    }
-                }
-                if(!isExist) {
+                if(dataSnapshot.getValue() == null) {
                     User newUser = new User();
                     newUser.setUid(mFirebaseUser.getUid());
                     newUser.setPhotoURL(mFirebaseUser.getPhotoUrl().toString());
                     newUser.setRole(1);
                     newUser.setName(mFirebaseUser.getDisplayName());
                     newUser.setEmail(mFirebaseUser.getEmail());
-                    mDatabaseReference.push().setValue(newUser);
+                    mDatabaseReference.setValue(newUser);
                 }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -95,7 +88,7 @@ public class UserActivity extends AppCompatActivity
             return;
         } else {
             // get user data from mUID
-
+            mUID = FirebaseAuth.getInstance().getUid();
 
         }
 

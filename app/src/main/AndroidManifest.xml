@@ -39,13 +39,6 @@
             </intent-filter>
         </activity>
           
-        <activity android:name=".ExampleDoctorDetailActivity" />
-        <activity android:name=".ChatMainActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity
-            android:name=".UserActivity"
-            android:label="@string/title_activity_user" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"

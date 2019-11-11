@@ -164,7 +164,10 @@ public class ChatMainActivity extends AppCompatActivity {
 
 
 
-                                    ChatMessage chatMessage = new ChatMessage(myUrl,FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),checker);
+                                    ChatMessage chatMessage = new ChatMessage(myUrl
+                                            ,FirebaseAuth.getInstance().getCurrentUser().getDisplayName()
+                                            ,checker
+                                            ,FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
 
                                     //insert to user's root
                                     FirebaseDatabase.getInstance()
@@ -306,7 +309,10 @@ public class ChatMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ChatMessage chatMessage = new ChatMessage(emojiconEditText.getText().toString(),FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),"text");
+                ChatMessage chatMessage = new ChatMessage(emojiconEditText.getText().toString()
+                                ,FirebaseAuth.getInstance().getCurrentUser().getDisplayName()
+                                ,"text"
+                                ,FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
 
                 //insert to user's root
                 FirebaseDatabase.getInstance()
@@ -374,14 +380,20 @@ public class ChatMainActivity extends AppCompatActivity {
             protected void populateView(@NonNull View v, @NonNull ChatMessage model, int position) {
                 TextView messText, messUser, messTime;
                 String messType;
+                ImageView profile_image, imageView;
+
                 //get data from firebase databse
                 messText = (BubbleTextView) v.findViewById(R.id.message_text);
                 messUser = (TextView) v.findViewById(R.id.message_user);
                 messTime = (TextView) v.findViewById(R.id.message_time);
-                ImageView imageView = v.findViewById(R.id.image);
+                imageView = v.findViewById(R.id.image);
+                profile_image = v.findViewById(R.id.profile_image);
+
                 messType = model.getType();
 
                 messUser.setText(model.getMessUser()+"");
+                Picasso.get().load(model.getImageUrl()).into(profile_image);
+
                 //if mess is text
                 if(messType.equalsIgnoreCase("text")) {
                     messText.setVisibility(View.VISIBLE);

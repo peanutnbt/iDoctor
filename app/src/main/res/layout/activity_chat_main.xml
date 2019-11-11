@@ -20,6 +20,7 @@
             android:layout_alignParentLeft="true"
             />
 
+
         <ImageView
             android:id="@+id/submit_button"
             android:layout_width="40dp"
@@ -69,6 +70,7 @@
 
 
         <ListView
+            android:layout_marginTop="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listView"

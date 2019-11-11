@@ -48,33 +48,82 @@ public class UserActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("User");
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("User").child(mFirebaseUser.getUid());
+//        String uid = mFirebaseUser.getUid();
+//        mDatabaseReference = mDatabaseReference.child(mFirebaseUser.getUid());
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.v(TAG,String.valueOf(dataSnapshot.getChildrenCount()));
-                boolean isExist = false;
-                for(DataSnapshot d:dataSnapshot.getChildren()) {
-                    User u = d.getValue(User.class);
-                    if(u.getUid().equals(mFirebaseUser.getUid())) {
-                        isExist = true;
-                    }
-                }
-                if(!isExist) {
+                if(dataSnapshot.getValue() == null) {
                     User newUser = new User();
                     newUser.setUid(mFirebaseUser.getUid());
                     newUser.setPhotoURL(mFirebaseUser.getPhotoUrl().toString());
                     newUser.setRole(1);
+                    newUser.setRoleName(mFirebaseUser.getDisplayName());
                     newUser.setName(mFirebaseUser.getDisplayName());
+                    newUser.setDescription("Hello World");
                     newUser.setEmail(mFirebaseUser.getEmail());
-                    mDatabaseReference.push().setValue(newUser);
+                    mDatabaseReference.setValue(newUser);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.v(TAG,databaseError.getMessage());
             }
-        });
+        };
+        mDatabaseReference.addListenerForSingleValueEvent(valueEventListener);
+//        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.getValue() == null) {
+//                    User newUser = new User();
+//                    newUser.setUid(mFirebaseUser.getUid());
+//                    newUser.setPhotoURL(mFirebaseUser.getPhotoUrl().toString());
+//                    newUser.setRole(1);
+//                    newUser.setRoleName(mFirebaseUser.getDisplayName());
+//                    newUser.setName(mFirebaseUser.getDisplayName());
+//                    newUser.setDescription("Hello World");
+//                    newUser.setEmail(mFirebaseUser.getEmail());
+//                    mDatabaseReference.setValue(newUser);
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.v(TAG,databaseError.getMessage());
+//            }
+//        });
+
+
+//        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                Log.v(TAG,String.valueOf(dataSnapshot.getChildrenCount()));
+//                boolean isExist = false;
+//                for(DataSnapshot d:dataSnapshot.getChildren()) {
+//                    User u = d.getValue(User.class);
+//                    if(u.getUid().equals(mFirebaseUser.getUid())) {
+//                        isExist = true;
+//                        break;
+//                    }
+//                }
+//                if(!isExist) {
+//                    User newUser = new User();
+//                    newUser.setUid(mFirebaseUser.getUid());
+//                    newUser.setPhotoURL(mFirebaseUser.getPhotoUrl().toString());
+//                    newUser.setRole(1);
+//                    newUser.setRoleName(mFirebaseUser.getDisplayName());
+//                    newUser.setName(mFirebaseUser.getDisplayName());
+//                    newUser.setEmail(mFirebaseUser.getEmail());
+//                    mDatabaseReference.push().setValue(newUser);
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.v(TAG,databaseError.getMessage());
+//            }
+//        });
     }
 
     @Override
@@ -93,12 +142,7 @@ public class UserActivity extends AppCompatActivity
             startActivity(new Intent(this,LoginActivity.class));
             finish();
             return;
-        } else {
-            // get user data from mUID
-
-
         }
-
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -112,8 +156,26 @@ public class UserActivity extends AppCompatActivity
 
         Intent intent = new Intent(UserActivity.this,ExampleDoctorDetailActivity.class);
         startActivity(intent);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @Override

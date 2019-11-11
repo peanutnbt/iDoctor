@@ -1,3 +1,19 @@
 <resources>
+
     <string name="app_name">iDoctor</string>
+    <string name="title_activity_user">IDoctor</string>
+
+    <!--    navigation drawer-->
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Message</string>
+    <string name="title_notifications">Profile</string>
+
+    <!--    Facebook-->
+    <string name="facebook_app_id">558311311590239</string>
+    <string name="fb_login_protocol_scheme">fb558311311590239</string>
+
+
+
+    <string name="sign_in">Welcome to iDoctor</string>
+
 </resources>

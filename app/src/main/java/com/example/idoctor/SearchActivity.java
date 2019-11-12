@@ -155,10 +155,9 @@ public class SearchActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     System.out.println("ALOHA: " + user.getName());
-
-                    Intent ii=new Intent(ctx, TestActivity.class);
-                    ii.putExtra("user", user);
-                    ctx.startActivity(ii);
+                    Intent intent = new Intent(ctx,ExampleDoctorDetailActivity.class);
+                    intent.putExtra("user", user);
+                    ctx.startActivity(intent);
                 }
             });
         }

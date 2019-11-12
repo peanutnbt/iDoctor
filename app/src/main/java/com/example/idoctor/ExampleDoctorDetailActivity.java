@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.idoctor.model.ChatMessage;
 import com.example.idoctor.model.Status;
+import com.example.idoctor.model.User;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.github.library.bubbleview.BubbleTextView;
@@ -38,15 +41,17 @@ public class ExampleDoctorDetailActivity extends AppCompatActivity {
 
     Button chatNow, chatHistory;
     String doctorID, text1, text2;
-    ImageView userImage;
+    ImageView userImage, nut;
     TextView name, address, email, facebook, twiter, phone, state;
-    private FirebaseListAdapter<Status> adapter;
+
 
 
     private FirebaseUser currentUser;
     private String currentUserID;
 
     private DatabaseReference doctorRef;
+
+    private FirebaseListAdapter<Status> adapter;
 
 
     @Override
@@ -82,6 +87,11 @@ public class ExampleDoctorDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example_doctor_detail);
 
+        Intent iin= getIntent();
+        User user = (User)iin.getSerializableExtra("user");
+
+
+
         chatNow = (Button)findViewById(R.id.chat_button);
         chatHistory = (Button)findViewById(R.id.history_button);
 
@@ -93,28 +103,25 @@ public class ExampleDoctorDetailActivity extends AppCompatActivity {
         twiter = findViewById(R.id.twiter);
         phone = findViewById(R.id.phone);
         state = findViewById(R.id.status);
+        nut = findViewById(R.id.nut);
 
-        Picasso.get().load(getIntent().getStringExtra("userUrl")).into(userImage);
-        name.setText(getIntent().getStringExtra("name"));
-        address.setText(getIntent().getStringExtra("address"));
-        email.setText(getIntent().getStringExtra("email"));
-        facebook.setText(getIntent().getStringExtra("facebook"));
-        twiter.setText(getIntent().getStringExtra("twiter"));
-        phone.setText(getIntent().getStringExtra("phone"));
+        Picasso.get()
+                .load(user.getPhotoURL())
+                .resize(200, 200)
+                .centerCrop()
+                .into(userImage);
+
+        name.setText(user.getName());
+        address.setText(user.getDescription());
+        email.setText(user.getEmail());
+        facebook.setText(user.getEmail());
+        twiter.setText(user.getEmail());
+        phone.setText(user.getUid());
 
 
 
         //handle button Chat
-        text1 = "BYbjCKvlf1P4tVsg8tVbsoW0IBp1";
-        text2 = "N5ouiLHes2WzxLKPkXnPvIcwDnp1";
-
-
-        if(FirebaseAuth.getInstance().getCurrentUser().getUid()
-                .equalsIgnoreCase(""+text1)){
-            doctorID = text2;
-        }else{
-            doctorID = text1;
-        }
+        doctorID = user.getUid();
 
 
 
@@ -157,7 +164,13 @@ public class ExampleDoctorDetailActivity extends AppCompatActivity {
                     if(dataSnapshot.hasChild("state")){
                         TextView status;
                         status = (TextView)findViewById(R.id.status);
-                        status.setText(dataSnapshot.child("state").getValue().toString());
+                        String nutState= dataSnapshot.child("state").getValue().toString();
+                        if(nutState.equalsIgnoreCase("online")){
+                            nut.setBackgroundColor(Color.parseColor("#8BC34A"));
+                        }else{
+                            nut.setBackgroundColor(Color.parseColor("#1D350D"));
+                        }
+                        status.setText(nutState);
                     }
                 }
             }
@@ -194,7 +207,13 @@ public class ExampleDoctorDetailActivity extends AppCompatActivity {
             protected void populateView(@NonNull View v, @NonNull Status model, int position) {
                 TextView status;
                 status = (TextView) v.findViewById(R.id.status);
-                status.setText(model.getState());
+                String nutState = model.getState();
+                if(nutState.equalsIgnoreCase("online")){
+                    nut.setBackgroundColor(Color.parseColor("#8BC34A"));
+                }else{
+                    nut.setBackgroundColor(Color.parseColor("#1D350D"));
+                }
+                status.setText(nutState);
 
 
             }
@@ -207,6 +226,8 @@ public class ExampleDoctorDetailActivity extends AppCompatActivity {
 
 
     private void updateUserStatus(String state){
+
+
         String saveCurrentTime, saveCurrentDate;
         Calendar calendar = Calendar.getInstance();
 

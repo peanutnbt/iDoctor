@@ -22,10 +22,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         TextView textView = (TextView)findViewById(R.id.textView3);
-        Intent iin= getIntent();
-        User user = (User)iin.getSerializableExtra("user");
 
-        textView.setText(user.getName());
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference myRef = database.getReference("ABC");

@@ -12,8 +12,10 @@
 
         <RelativeLayout
             android:id="@+id/rellay1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:background="@drawable/doctor_detail"
+            android:padding="10dp"
             android:paddingBottom="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -27,10 +29,11 @@
 
                 <ImageView
                     android:id="@+id/imageUser"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="200dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="-20dp"
                     android:adjustViewBounds="true"
-                    android:padding="3dp"
+                    android:padding="10dp"
                     android:scaleType="centerInside"
                     app:srcCompat="@mipmap/cool_emoji" />
 
@@ -42,11 +45,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgUser"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15sp"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@string/common_google_play_services_install_title"
                 android:text="Emoji"
                 android:textColor="@android:color/black"
-                android:textSize="32sp" />
+                android:textSize="20sp" />
 
 
             <TextView
@@ -55,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name"
                 android:layout_centerHorizontal="true"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@string/common_google_play_services_unsupported_text"
                 android:text="new york, usa"
                 android:textAllCaps="true"
                 android:textColor="@color/address"
@@ -91,8 +93,10 @@
             android:paddingBottom="5dp">
 
             <LinearLayout
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#00DB1010"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -101,8 +105,16 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Status"
-                    android:textColor="@android:color/black"
+                    android:textColor="#1712D5"
                     android:textSize="25sp" />
+
+                <ImageView
+                    android:id="@+id/nut"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#1D350D" />
 
                 <ListView
                     android:id="@+id/listStatus"
@@ -110,7 +122,7 @@
                     android:layout_height="60dp"
                     android:fontFamily="sans-serif-light"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/black"
+                    android:textColor="#FFEB3B"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -130,7 +142,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <Button
                     android:id="@+id/chat_button"
@@ -138,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Chat Now"
-                    android:textColor="@android:color/black"
+                    android:textColor="#8BC34A"
                     android:textSize="20sp" />
 
                 <Button
@@ -147,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="View Chat History"
-                    android:textColor="@android:color/black"
+                    android:textColor="#009688"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -180,6 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email"
+                    android:textColor="#9C27B0"
                     android:textSize="13sp" />
 
                 <TextView
@@ -207,6 +221,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone"
+                    android:textColor="#9C27B0"
                     android:textSize="13sp" />
 
                 <TextView
@@ -234,6 +249,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Twitter"
+                    android:textColor="#9C27B0"
                     android:textSize="13sp" />
 
                 <TextView
@@ -261,6 +277,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Facebook"
+                    android:textColor="#9C27B0"
                     android:textSize="13sp" />
 
                 <TextView

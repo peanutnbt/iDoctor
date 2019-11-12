@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.idoctor.model.ChatMessage;
 import com.example.idoctor.model.Status;
+import com.example.idoctor.model.User;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.github.library.bubbleview.BubbleTextView;
@@ -82,6 +83,9 @@ public class ExampleDoctorDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example_doctor_detail);
 
+        Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("user");
+
         chatNow = (Button)findViewById(R.id.chat_button);
         chatHistory = (Button)findViewById(R.id.history_button);
 
@@ -94,27 +98,27 @@ public class ExampleDoctorDetailActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         state = findViewById(R.id.status);
 
-        Picasso.get().load(getIntent().getStringExtra("userUrl")).into(userImage);
-        name.setText(getIntent().getStringExtra("name"));
-        address.setText(getIntent().getStringExtra("address"));
-        email.setText(getIntent().getStringExtra("email"));
-        facebook.setText(getIntent().getStringExtra("facebook"));
-        twiter.setText(getIntent().getStringExtra("twiter"));
-        phone.setText(getIntent().getStringExtra("phone"));
+        Picasso.get().load(user.getPhotoURL()).into(userImage);
+        name.setText(user.getName());
+        address.setText("AAAAAAAAAAAAAAA");
+        email.setText(user.getEmail());
+        facebook.setText(user.getEmail());
+        twiter.setText(user.getEmail());
+        phone.setText(user.getUid());
 
 
-
-        //handle button Chat
-        text1 = "BYbjCKvlf1P4tVsg8tVbsoW0IBp1";
-        text2 = "N5ouiLHes2WzxLKPkXnPvIcwDnp1";
-
-
-        if(FirebaseAuth.getInstance().getCurrentUser().getUid()
-                .equalsIgnoreCase(""+text1)){
-            doctorID = text2;
-        }else{
-            doctorID = text1;
-        }
+        doctorID = user.getUid();
+//        //handle button Chat
+//        text1 = "BYbjCKvlf1P4tVsg8tVbsoW0IBp1";
+//        text2 = "N5ouiLHes2WzxLKPkXnPvIcwDnp1";
+//
+//
+//        if(FirebaseAuth.getInstance().getCurrentUser().getUid()
+//                .equalsIgnoreCase(""+text1)){
+//            doctorID = text2;
+//        }else{
+//            doctorID = text1;
+//        }
 
 
 

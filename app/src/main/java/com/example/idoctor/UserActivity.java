@@ -162,7 +162,7 @@ public class UserActivity extends AppCompatActivity
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Intent intent = new Intent(UserActivity.this,ExampleDoctorDetailActivity.class);
+        Intent intent = new Intent(UserActivity.this,HomeActivity.class);
         startActivity(intent);
     }
 

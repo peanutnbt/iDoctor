@@ -27,7 +27,7 @@ public class GridDoctorAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return users.size();
     }
 
     @Override
@@ -54,9 +54,10 @@ public class GridDoctorAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     System.out.println("ALOHA: " + users.get(i).getName());
 
-                    Intent ii=new Intent(context, TestActivity.class);
-                    ii.putExtra("user", users.get(i));
-                    context.startActivity(ii);
+
+                    Intent intent = new Intent(context,ExampleDoctorDetailActivity.class);
+                    intent.putExtra("user", users.get(i));
+                    context.startActivity(intent);
                 }
             });
 

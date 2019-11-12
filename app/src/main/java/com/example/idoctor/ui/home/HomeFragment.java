@@ -13,24 +13,36 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.idoctor.R;
+import com.example.idoctor.model.User;
+
+import java.util.List;
 
 // Home
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private RecyclerView mRecyclerView;
+    private UserRecyclerAdapter mUserRecyclerAdapter;
+    private GridLayoutManager mGridLayoutManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
+        final View root = inflater.inflate(R.layout.fragment_home, container, false);
+//        final TextView textView = root.findViewById(R.id.text_home);
+        mRecyclerView = root.findViewById(R.id.users_recycle);
+        mGridLayoutManager = new GridLayoutManager(root.getContext(),getResources().getInteger(R.integer.course_grid_span));
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
+        homeViewModel.getText().observe(this, new Observer<List<User>>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(List<User> users) {
+                mUserRecyclerAdapter = new UserRecyclerAdapter(root.getContext(),users);
+                mRecyclerView.setAdapter(mUserRecyclerAdapter);
             }
         });
         return root;

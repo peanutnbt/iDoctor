@@ -32,31 +32,29 @@
             android:src="@android:drawable/ic_menu_send" />
 
 
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/emoji_button"
+            android:background="@mipmap/ic_file_icon"
             android:clickable="true"
-            android:layout_alignParentTop="true"
-            android:tint="@android:color/white"
-            android:layout_alignParentLeft="true"
-            app:srcCompat="@android:drawable/ic_menu_report_image" />
-
-
+            android:foreground="@mipmap/ic_file_icon"
+            android:tint="@android:color/white" />
 
 
         <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
-            android:layout_alignParentBottom="true"
             android:id="@+id/emoji_edit_text"
-            android:layout_toRightOf="@+id/emoji_button"
+            android:layout_width="283dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="49dp"
+            android:layout_marginRight="-1dp"
+            android:layout_marginBottom="6dp"
             android:layout_toLeftOf="@+id/submit_button"
-            app:emojiconSize="28sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-
+            android:layout_toRightOf="@+id/emoji_button"
+            app:emojiconSize="28sp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/signout_button"

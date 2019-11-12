@@ -15,7 +15,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.idoctor.model.Status;
 import com.example.idoctor.model.User;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -31,6 +38,12 @@ public class HomeActivity extends AppCompatActivity {
     private GridView gridViewDoctor;
     private TextView mShowMore;
     public ArrayList<User> users;
+    private FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+    private FirebaseListAdapter<Status> adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,4 +116,6 @@ public class HomeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

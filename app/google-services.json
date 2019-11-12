@@ -22,7 +22,14 @@
             "certificate_hash": "dd590c934f47b750b15d2e2b033df37997c2d594"
           }
         },
-        
+        {
+          "client_id": "803033263829-g0c1ccs86vndb5umn7eklqmg4d68su93.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.idoctor",
+            "certificate_hash": "85e0ef84cca06a84b4dfeb280ee8d2fe1efb4ba2"
+          }
+        },
         {
           "client_id": "803033263829-bsbvb44ef9tvmpe9h5pcp9ml5of5o40q.apps.googleusercontent.com",
           "client_type": 1,

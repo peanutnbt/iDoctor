@@ -43,6 +43,7 @@
         android:gravity="right"
         android:text="See more"
         android:textAlignment="gravity"
+        android:textColor="#005CFF"
         app:layout_constraintBottom_toTopOf="@+id/recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"

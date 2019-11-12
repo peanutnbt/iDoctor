@@ -1,9 +1,6 @@
-package com.example.idoctor.model;
+package com.example.idoctor.domain;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
-
+public class UserFirebase {
     private String uid;
     private String email;
     private String name;
@@ -12,15 +9,7 @@ public class User implements Serializable {
     private String description;
     private int role;
 
-    public User() {
-    }
-
-    public User(String uid, String email, String name, String photoURL, int role) {
-        this.uid = uid;
-        this.email = email;
-        this.name = name;
-        this.photoURL = photoURL;
-        this.role = role;
+    public UserFirebase() {
     }
 
     public String getUid() {

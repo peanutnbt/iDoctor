@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.idoctor.ExampleDoctorDetailActivity;
 import com.example.idoctor.R;
 import com.example.idoctor.model.User;
@@ -42,13 +43,17 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull UserRecyclerAdapter.ViewHolder holder, int position) {
-        User user = mUsers.get(position);
-        holder.mCurrentPosition = position;
-        holder.mTextView.setText(user.getName());
-        Glide
-                .with(mContext)
-                .load(user.getPhotoURL())
-                .into(holder.mImageView);
+
+
+//        User user = mUsers.get(position);
+//        holder.mCurrentPosition = position;
+//        holder.mTextView.setText(user.getName());
+//        Glide
+//                .with(mContext)
+//                .load(user.getPhotoURL())
+//                .into(holder.mImageView);
+
+        holder.setDetails(mContext,mUsers.get(position));
     }
 
     @Override
@@ -56,23 +61,30 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         return mUsers.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private ImageView mImageView;
-        private TextView mTextView;
-        private int mCurrentPosition;
+    public static  class ViewHolder extends RecyclerView.ViewHolder{
+        View mView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.imageView2);
-            mTextView  = itemView.findViewById(R.id.textView2);
+            mView=itemView;
+        }
+        public void setDetails(final Context ctx, final User user){
+            TextView user_name= mView.findViewById(R.id.textView2);
+            ImageView user_image= mView.findViewById(R.id.imageView2);
 
-            // set event for a card/item
-            itemView.setOnClickListener(new View.OnClickListener() {
+            user_name.setText(user.getName());
+
+            Glide
+                    .with(itemView.getContext())
+                    .load(user.getPhotoURL())
+                    .into(user_image);
+            user_image.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(mContext, ExampleDoctorDetailActivity.class);
-                    intent.putExtra("user", mUsers.get(mCurrentPosition));
-                    mContext.startActivity(intent);
+                public void onClick(View v) {
+                    System.out.println("ALOHA: " + user.getName());
+                    Intent intent = new Intent(ctx,ExampleDoctorDetailActivity.class);
+                    intent.putExtra("user", user);
+                    ctx.startActivity(intent);
                 }
             });
         }

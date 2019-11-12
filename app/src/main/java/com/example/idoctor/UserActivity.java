@@ -152,6 +152,7 @@ public class UserActivity extends AppCompatActivity
 
         }
 
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -202,6 +203,10 @@ public class UserActivity extends AppCompatActivity
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
                 startActivity(new Intent(this,LoginActivity.class));
                 finish();
+                return true;
+            case R.id.search_menu_item:
+                Intent intent = new Intent(this, SearchActivity.class);
+                this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

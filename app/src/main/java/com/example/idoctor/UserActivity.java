@@ -164,6 +164,8 @@ public class UserActivity extends AppCompatActivity
 
         Intent intent = new Intent(UserActivity.this,HomeActivity.class);
         startActivity(intent);
+
+
     }
 
     @Override

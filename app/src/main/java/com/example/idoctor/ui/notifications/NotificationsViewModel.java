@@ -46,5 +46,7 @@ public class NotificationsViewModel extends ViewModel {
         return mUserMutableLiveData;
     }
 
+    public FirebaseUser getUserURL(){ return mFirebaseUser;}
+
 
 }

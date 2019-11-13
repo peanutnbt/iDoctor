@@ -53,6 +53,8 @@ public class UserActivity extends AppCompatActivity
 //        String uid = mFirebaseUser.getUid();
 //        mDatabaseReference = mDatabaseReference.child(mFirebaseUser.getUid());
         ValueEventListener valueEventListener = new ValueEventListener() {
+
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue() == null) {
@@ -66,6 +68,7 @@ public class UserActivity extends AppCompatActivity
                     newUser.setEmail(mFirebaseUser.getEmail());
                     mDatabaseReference.setValue(newUser);
                 }
+
             }
 
             @Override
@@ -142,7 +145,13 @@ public class UserActivity extends AppCompatActivity
             startActivity(new Intent(this,LoginActivity.class));
             finish();
             return;
+
+        } else {
+            // get user data from mUID
+            mUID = FirebaseAuth.getInstance().getUid();
+
         }
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -154,8 +163,10 @@ public class UserActivity extends AppCompatActivity
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Intent intent = new Intent(UserActivity.this,ExampleDoctorDetailActivity.class);
+        Intent intent = new Intent(UserActivity.this,HomeActivity.class);
         startActivity(intent);
+
+
     }
 
     @Override
@@ -192,6 +203,10 @@ public class UserActivity extends AppCompatActivity
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
                 startActivity(new Intent(this,LoginActivity.class));
                 finish();
+                return true;
+            case R.id.search_menu_item:
+                Intent intent = new Intent(this, SearchActivity.class);
+                this.startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

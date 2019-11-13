@@ -25,10 +25,8 @@ import java.util.List;
 // Home
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private RecyclerView mRecyclerView;
-
     private TextView mShowMore;
+    private RecyclerView mRecyclerView;
     private UserRecyclerAdapter mUserRecyclerAdapter;
     private GridLayoutManager mGridLayoutManager;
 

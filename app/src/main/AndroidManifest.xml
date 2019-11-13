@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
       
         <activity android:name=".TestActivity">
 
@@ -30,7 +31,9 @@
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".UserActivity"
-            android:label="@string/title_activity_user">
+            android:label="@string/title_activity_user"
+            android:windowSoftInputMode="adjustPan"
+            >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,7 +70,8 @@
         <meta-data
             android:name="android.support.VERSION"
             android:value="@string/facebook_app_id"
-            tools:replace="android:value" />
+            tools:replace="android:value"
+            />
 
     </application>
 

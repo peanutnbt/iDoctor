@@ -6,12 +6,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,7 +68,19 @@ public class NotificationsFragment extends Fragment {
         mProfile = root.findViewById(R.id.image_profile);
         mUserName = root.findViewById(R.id.user_name);
         mEmail = root.findViewById(R.id.user_email);
+
+        //setup description text
         mDescription = root.findViewById(R.id.user_description);
+        mDescription.setInputType(InputType.TYPE_CLASS_TEXT| InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+//        Display display = getActivity().getWindowManager().getDefaultDisplay();
+//        int width = display.getWidth();
+//        if(width>400){
+//            mDescription.setWidth(400);
+//        } else{
+//            mDescription.setWidth(width);
+//        }
+
+
         //declare button and make event on click
         mButton = root.findViewById(R.id.onDescriptionChange);
         mButton.setOnClickListener(new View.OnClickListener() {

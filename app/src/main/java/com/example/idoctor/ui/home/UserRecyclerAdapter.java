@@ -3,6 +3,7 @@ package com.example.idoctor.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         mContext = context;
         mLayoutInflater = LayoutInflater.from(mContext);
         mUsers = users;
+
     }
 
     @NonNull

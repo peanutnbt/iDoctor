@@ -26,6 +26,7 @@ public class ChatHistoryAdapter extends RecyclerView.Adapter<ChatHistoryAdapter.
     private final LayoutInflater mLayoutInflater;
     private final List<User> users;
 
+
     public ChatHistoryAdapter(Context context, List<User> temp) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(mContext);
@@ -63,6 +64,18 @@ public class ChatHistoryAdapter extends RecyclerView.Adapter<ChatHistoryAdapter.
             TextView user_name= mView.findViewById(R.id.txt_username);
             TextView description = mView.findViewById(R.id.txt_description);
             CircleImageView circleImageView = mView.findViewById(R.id.avatar_image);
+
+            circleImageView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    String doctorID =  user.getUid();
+                    Intent sendIntent = new Intent(v.getContext(),ChatHistoryActivity.class);
+                    sendIntent.putExtra("DOCTORID", ""+doctorID);
+                    ctx.startActivity(sendIntent);
+
+                }
+            });
 
             user_name.setText(makeUserNameLesser(user.getName()));
             Log.i("Hello world with 2 side",user.getEmail()+"");

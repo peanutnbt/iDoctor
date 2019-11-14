@@ -30,11 +30,11 @@
         android:layout_marginTop="70dp"
         android:background="@drawable/search_layout"
         android:ems="10"
+        android:hint="Search here"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Search Here"
         android:textColor="#999999"
         android:textSize="16dp"
         app:fontFamily="@font/nunito_bold" />
